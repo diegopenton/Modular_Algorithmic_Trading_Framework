@@ -1,11 +1,17 @@
 # src/app.py
-from features.loaders import load_prices  # 👈 import your new loader function
+from .features.loaders import load_prices, add_rsi
+from .branches.tech_indicators.branch_rsi import RSITree
 
 def main():
-    # call your loader for Apple stock (AAPL) just as a test
-    df = load_prices("AAPL", "2022-01-01", "2022-06-01")
-    print("✅ Loaded data sample:")
-    print(df.head())  # show the first few rows
+    df = load_prices("AAPL", "2022-01-01", "2023-01-01")
+    df = add_rsi(df, 14)
+
+    branch = RSITree(max_depth=3, min_samples_leaf=50)
+    branch.fit(df)
+    out = branch.predict(df.tail(30))  # demo on last 30 rows
+
+    print("✅ RSI branch output (last 5 rows):")
+    print(out.tail())
 
 if __name__ == "__main__":
     main()
