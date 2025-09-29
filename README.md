@@ -1,4 +1,4 @@
-# Modular Algorithmic Trading Framework
+# Modular Algorithmic Trading Framework (Currently in Hiatus for Mid-Term Exam season)
 
 A Python-based **algorithmic trading system** built with a **tree-trunk & branches architecture**.  
 Each branch is a model (RSI, GARCH, ML), and the trunk combines them into trading decisions with risk controls.
